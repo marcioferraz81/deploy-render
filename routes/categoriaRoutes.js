@@ -8,4 +8,7 @@ router.get("/editar/:id", controller.editar);
 router.post("/atualizar/:id", controller.atualizar);
 router.get("/excluir/:id", controller.excluir);
 
+// 🔹 ROTA PARA MOBILE
+router.get("/api", controller.apiListarMobile);
+
 module.exports = router;

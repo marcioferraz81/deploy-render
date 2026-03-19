@@ -61,3 +61,21 @@ exports.excluir = async (req, res) => {
 
     res.redirect("/categorias");
 };
+
+// 🔹 LISTAR FORMATADO (IDEAL PARA MOBILE)
+exports.apiListarMobile = async (req, res) => {
+    try {
+        const snapshot = await db.ref("categorias").once("value");
+
+        const dados = snapshot.val() || {};
+
+        const lista = Object.keys(dados).map((key) => ({
+            id: key,
+            ...dados[key],
+        }));
+
+        res.json(lista);
+    } catch (error) {
+        res.status(500).json({ erro: error.message });
+    }
+};
